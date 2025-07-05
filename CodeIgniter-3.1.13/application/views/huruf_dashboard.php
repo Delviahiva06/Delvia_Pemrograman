@@ -3,58 +3,103 @@
 <head>
     <title>Input Huruf Hijaiyah</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #f7f7f7; }
+        body {
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive, Arial, sans-serif;
+            background: linear-gradient(135deg, #f9d6e9 0%, #d6f9f3 100%);
+            min-height: 100vh;
+        }
         .container {
             width: 90%;
             margin: 30px auto;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 30px 20px;
+            background: #fffbe7;
+            border-radius: 18px;
+            box-shadow: 0 0 18px rgba(0,0,0,0.08);
+            padding: 35px 25px;
+            border: 3px dashed #ffd6e0;
         }
-        h2 { text-align: center; margin-bottom: 20px; }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #ff7eb9;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            text-shadow: 1px 2px 0 #fff, 0 2px 8px #ffb6b9;
+        }
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
         .tab {
-            background: #e9ecef;
+            background: #ffe0f7;
             border: none;
-            padding: 10px 18px;
-            margin: 0 5px;
-            border-radius: 4px 4px 0 0;
+            padding: 12px 22px;
+            margin: 0 7px 7px 0;
+            border-radius: 20px 20px 0 0;
             cursor: pointer;
             font-weight: bold;
+            color: #ff7eb9;
+            font-size: 1.1em;
+            box-shadow: 0 2px 6px rgba(255,126,185,0.08);
+            transition: background 0.2s, color 0.2s;
         }
         .tab.active, .tab:hover {
-            background: #4285f4;
+            background: #ffb6b9;
             color: #fff;
         }
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            gap: 24px;
         }
         .card {
-            background: #f1f1f1;
-            border-radius: 8px;
-            padding: 18px 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+            background: linear-gradient(135deg, #f9f7d6 0%, #d6f9f3 100%);
+            border-radius: 16px;
+            padding: 22px 14px;
+            box-shadow: 0 4px 12px rgba(255,182,185,0.13);
             text-align: center;
+            border: 2px solid #ffb6b9;
+            position: relative;
+            transition: transform 0.15s;
+        }
+        .card:hover {
+            transform: scale(1.04) rotate(-2deg);
+            box-shadow: 0 8px 24px rgba(255,182,185,0.18);
         }
         .huruf {
-            font-size: 2.2em;
+            font-size: 2.5em;
             margin-bottom: 10px;
+            color: #ff7eb9;
+            text-shadow: 1px 1px 0 #fff, 0 2px 8px #ffb6b9;
         }
         .sound {
-            font-size: 1em;
-            color: #666;
+            font-size: 1.1em;
+            color: #6ec6ca;
             margin-bottom: 8px;
         }
         .desc {
-            font-size: 0.95em;
+            font-size: 1em;
             color: #444;
+        }
+        /* Tambahan dekorasi lucu */
+        .card:before {
+            content: '★';
+            position: absolute;
+            top: 10px;
+            left: 18px;
+            color: #ffe066;
+            font-size: 1.3em;
+            opacity: 0.7;
+        }
+        .card:after {
+            content: '♡';
+            position: absolute;
+            bottom: 10px;
+            right: 18px;
+            color: #ffb6b9;
+            font-size: 1.2em;
+            opacity: 0.6;
         }
     </style>
     <script>
