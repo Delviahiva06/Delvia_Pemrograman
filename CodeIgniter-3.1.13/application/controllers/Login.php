@@ -24,7 +24,7 @@ class Login extends CI_Controller {
             $user = $query->row();
             $this->session->set_userdata('user_id', $user->p_id);
             $this->session->set_userdata('username', $user->nama);
-            redirect('home');
+            redirect('huruf');
         } else {
             $data['error'] = 'Username atau password salah!';
             $this->load->view('login_form', $data);
