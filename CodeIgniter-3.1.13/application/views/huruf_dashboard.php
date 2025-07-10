@@ -13,10 +13,10 @@
         .header {
             background: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%);
             text-align: center;
-            padding: 38px 0 18px 0;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            box-shadow: 0 4px 24px rgba(91,33,182,0.10);
+            padding: 18px 0 8px 0;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: 0 2px 8px rgba(91,33,182,0.10);
         }
         .header .logo {
             font-size: 2.7em;
@@ -95,20 +95,20 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-            margin-top: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 6px;
+            margin-top: 4px;
         }
         .card {
             background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-            border-radius: 18px;
-            padding: 28px 16px 20px 16px;
-            box-shadow: 0 4px 24px rgba(91,33,182,0.10);
+            border-radius: 8px;
+            padding: 6px 2px 6px 2px;
+            box-shadow: 0 1px 4px rgba(91,33,182,0.10);
             text-align: center;
-            border: 2px solid #a78bfa;
+            border: 1px solid #a78bfa;
             position: relative;
             transition: transform 0.18s, box-shadow 0.18s;
-            min-height: 170px;
+            min-height: 38px;
             opacity: 1;
             animation: fadeIn 0.5s;
         }
@@ -129,8 +129,8 @@
             100% { transform: translateY(-8px) scale(1.08); }
         }
         .huruf {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 1.2em;
+            margin-bottom: 4px;
             color: #a78bfa;
             text-shadow: 1px 1px 0 #fff, 0 2px 8px #a78bfa44;
         }
