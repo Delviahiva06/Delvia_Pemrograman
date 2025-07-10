@@ -96,6 +96,42 @@
                 question: 'Huruf apakah ini?',
                 options: ['Dal', 'Dzal', 'Ra', 'Zai'],
                 answer: 'Dal'
+            },
+            {
+                huruf: 'ر',
+                question: 'Huruf apakah ini?',
+                options: ['Zai', 'Ra', 'Sin', 'Syin'],
+                answer: 'Ra'
+            },
+            {
+                huruf: 'س',
+                question: 'Huruf apakah ini?',
+                options: ['Syin', 'Sad', 'Sin', 'Dhad'],
+                answer: 'Sin'
+            },
+            {
+                huruf: 'ص',
+                question: 'Huruf apakah ini?',
+                options: ['Syin', 'Sad', 'Sin', 'Dhad'],
+                answer: 'Sad'
+            },
+            {
+                huruf: 'ط',
+                question: 'Huruf apakah ini?',
+                options: ['Tha', 'Dha', 'Ta', 'Dal'],
+                answer: 'Tha'
+            },
+            {
+                huruf: 'ف',
+                question: 'Huruf apakah ini?',
+                options: ['Fa', 'Qaf', 'Kaf', 'Lam'],
+                answer: 'Fa'
+            },
+            {
+                huruf: 'م',
+                question: 'Huruf apakah ini?',
+                options: ['Mim', 'Nun', 'Lam', 'Ya'],
+                answer: 'Mim'
             }
         ];
         let current = 0;
