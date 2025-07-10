@@ -295,5 +295,28 @@
             <?php endforeach; ?>
         </div>
     </div>
+    <div style="text-align:center; margin-top: 32px;">
+        <a href="/Tugas_Delvia/CodeIgniter-3.1.13/index.php/nextpage" class="next-btn">Next &rarr;</a>
+    </div>
+    <style>
+        .next-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%);
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.2em;
+            padding: 14px 38px;
+            border-radius: 999px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(91,33,182,0.10);
+            margin-top: 18px;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .next-btn:hover {
+            background: linear-gradient(90deg, #fbc2eb 0%, #a6c1ee 100%);
+            color: #5b21b6;
+            box-shadow: 0 8px 24px rgba(91,33,182,0.13);
+        }
+    </style>
 </body>
 </html> 
