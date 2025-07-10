@@ -176,6 +176,16 @@
         }
     </style>
     <script>
+        const explanations = {
+            'all': 'Selamat datang di dashboard pengenalan huruf hijaiyah. Pilih kategori di atas untuk melihat huruf beserta penjelasan dan contohnya.',
+            'fathah': 'Fathah (َ) adalah harakat berupa garis pendek di atas huruf. Fathah menghasilkan bunyi "a" setelah huruf hijaiyah. Contoh: بَ = ba.',
+            'kasrah': 'Kasrah (ِ) adalah harakat berupa garis pendek di bawah huruf. Kasrah menghasilkan bunyi "i" setelah huruf hijaiyah. Contoh: بِ = bi.',
+            'dhommah': 'Dhommah (ُ) adalah harakat berbentuk seperti huruf waw kecil di atas huruf. Dhommah menghasilkan bunyi "u" setelah huruf hijaiyah. Contoh: بُ = bu.',
+            'tfathah': 'Tanwin Fathah (ً) adalah dua fathah di atas huruf. Tanwin Fathah menghasilkan bunyi "an" setelah huruf hijaiyah. Contoh: بً = ban.',
+            'tdhommah': 'Tanwin Dhommah (ٌ) adalah dua dhommah di atas huruf. Tanwin Dhommah menghasilkan bunyi "un" setelah huruf hijaiyah. Contoh: بٌ = bun.',
+            'tkasrah': 'Tanwin Kasrah (ٍ) adalah dua kasrah di bawah huruf. Tanwin Kasrah menghasilkan bunyi "in" setelah huruf hijaiyah. Contoh: بٍ = bin.',
+            'tajwid': 'Tajwid adalah ilmu membaca Al-Qur\'an dengan kaidah yang benar, meliputi hukum bacaan, makhraj, sifat huruf, dan tanda-tanda khusus. Memahami tajwid penting agar bacaan Al-Qur\'an menjadi benar dan indah.'
+        };
         function filterKategori(kat) {
             var cards = document.querySelectorAll('.card');
             cards.forEach(function(card) {
@@ -190,6 +200,8 @@
                 tab.classList.remove('active');
             });
             document.getElementById('tab-' + kat).classList.add('active');
+            // Tampilkan penjelasan kategori
+            document.getElementById('kategori-explanation').innerText = explanations[kat] || '';
         }
         function playAudio(huruf, latin) {
             // Path audio: assets/audio/{latin}.mp3
@@ -221,6 +233,9 @@
             <button class="tab" id="tab-tdhommah" onclick="filterKategori('tdhommah')">Tanwin Dhommah</button>
             <button class="tab" id="tab-tkasrah" onclick="filterKategori('tkasrah')">Tanwin Kasrah</button>
             <button class="tab" id="tab-tajwid" onclick="filterKategori('tajwid')">Tajwid</button>
+        </div>
+        <div id="kategori-explanation" style="margin: 0 auto 24px auto; max-width: 700px; background: linear-gradient(90deg,#e0c3fc 0%,#8ec5fc 100%); color: #4b2997; border-radius: 14px; padding: 18px 24px; font-size: 1.13em; font-weight: 500; box-shadow: 0 2px 12px #a78bfa22; text-align: center;">
+            Selamat datang di dashboard pengenalan huruf hijaiyah. Pilih kategori untuk melihat huruf dan penjelasannya.
         </div>
         <div class="intro-boxes">
             <div><div class="huruf">ا</div><div class="latin">alif</div></div>
@@ -255,11 +270,23 @@
         </div>
         <div class="grid">
             <?php foreach($huruf as $h): ?>
+            <?php
+            $harakat = '';
+            switch(strtolower($h->h_cbg ?? '')) {
+                case 'fathah': $harakat = 'َ'; break;
+                case 'kasrah': $harakat = 'ِ'; break;
+                case 'dhommah': $harakat = 'ُ'; break;
+                case 'tfathah': $harakat = 'ً'; break;
+                case 'tdhommah': $harakat = 'ٌ'; break;
+                case 'tkasrah': $harakat = 'ٍ'; break;
+                // case 'tajwid': $harakat = ''; break;
+            }
+            ?>
             <div class="card" data-kategori="<?= isset($h->h_cbg) ? strtolower($h->h_cbg) : '' ?>">
                 <button class="audio-btn" onclick="playAudio('<?= htmlspecialchars($h->huruf_1) ?>', '<?= isset($h->latin) ? htmlspecialchars($h->latin) : htmlspecialchars($h->huruf_1) ?>')" title="Dengarkan Suara">
                     <svg viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2c0-1.77-1-3.29-2.5-4.03v8.06c1.5-.74 2.5-2.26 2.5-4.03zM14 3.23v2.06c3.39.49 6 3.39 6 6.71s-2.61 6.22-6 6.71v2.06c4.5-.52 8-4.31 8-8.77s-3.5-8.25-8-8.77z"></path></svg>
                 </button>
-                <div class="huruf"><?= htmlspecialchars($h->huruf_1) ?></div>
+                <div class="huruf"><?= htmlspecialchars($h->huruf_1) . $harakat ?></div>
                 <div class="sound">Suara: <?= htmlspecialchars($h->h_sound) ?></div>
                 <?php if (!empty($h->deskripsi)): ?>
                 <div class="desc"><?= htmlspecialchars($h->deskripsi) ?></div>
