@@ -55,22 +55,73 @@
         }
         .quiz-feedback.benar { color: #22c55e; }
         .quiz-feedback.salah { color: #ef4444; }
+        .quiz-score {
+            margin-top: 24px;
+            font-size: 1.2em;
+            color: #5b21b6;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
     <div class="quiz-container">
-        <div class="quiz-question">Huruf apakah ini?</div>
-        <div class="quiz-huruf">ب</div>
-        <form id="quizForm" class="quiz-options">
-            <label><input type="radio" name="jawaban" value="alif"> Alif</label>
-            <label><input type="radio" name="jawaban" value="ba"> Ba</label>
-            <label><input type="radio" name="jawaban" value="ta"> Ta</label>
-            <label><input type="radio" name="jawaban" value="jim"> Jim</label>
-            <button type="button" class="quiz-btn" onclick="cekJawaban()">Cek Jawaban</button>
-        </form>
+        <div id="quiz-question" class="quiz-question"></div>
+        <div id="quiz-huruf" class="quiz-huruf"></div>
+        <form id="quizForm" class="quiz-options"></form>
         <div id="feedback" class="quiz-feedback"></div>
+        <div id="quiz-score" class="quiz-score"></div>
     </div>
     <script>
+        const quizData = [
+            {
+                huruf: 'ب',
+                question: 'Huruf apakah ini?',
+                options: ['Alif', 'Ba', 'Ta', 'Jim'],
+                answer: 'Ba'
+            },
+            {
+                huruf: 'ت',
+                question: 'Huruf apakah ini?',
+                options: ['Ta', 'Tsa', 'Jim', 'Dal'],
+                answer: 'Ta'
+            },
+            {
+                huruf: 'ج',
+                question: 'Huruf apakah ini?',
+                options: ['Ha', 'Jim', 'Kha', 'Dzal'],
+                answer: 'Jim'
+            },
+            {
+                huruf: 'د',
+                question: 'Huruf apakah ini?',
+                options: ['Dal', 'Dzal', 'Ra', 'Zai'],
+                answer: 'Dal'
+            }
+        ];
+        let current = 0;
+        let score = 0;
+
+        function loadQuiz() {
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('quiz-score').textContent = '';
+            const q = quizData[current];
+            document.getElementById('quiz-question').textContent = q.question;
+            document.getElementById('quiz-huruf').textContent = q.huruf;
+            const form = document.getElementById('quizForm');
+            form.innerHTML = '';
+            q.options.forEach(opt => {
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="radio" name="jawaban" value="${opt}"> ${opt}`;
+                form.appendChild(label);
+            });
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'quiz-btn';
+            btn.textContent = 'Cek Jawaban';
+            btn.onclick = cekJawaban;
+            form.appendChild(btn);
+        }
+
         function cekJawaban() {
             var jawaban = document.querySelector('input[name=jawaban]:checked');
             var feedback = document.getElementById('feedback');
@@ -79,14 +130,47 @@
                 feedback.className = 'quiz-feedback salah';
                 return;
             }
-            if (jawaban.value === 'ba') {
-                feedback.textContent = 'Benar! Ini adalah huruf Ba.';
+            if (jawaban.value === quizData[current].answer) {
+                feedback.textContent = 'Benar!';
                 feedback.className = 'quiz-feedback benar';
+                score++;
             } else {
-                feedback.textContent = 'Salah, coba lagi!';
+                feedback.textContent = 'Salah, jawaban yang benar: ' + quizData[current].answer;
                 feedback.className = 'quiz-feedback salah';
             }
+            // Tombol Next
+            const form = document.getElementById('quizForm');
+            let nextBtn = document.createElement('button');
+            nextBtn.type = 'button';
+            nextBtn.className = 'quiz-btn';
+            nextBtn.textContent = (current < quizData.length - 1) ? 'Soal Selanjutnya' : 'Lihat Skor';
+            nextBtn.onclick = nextSoal;
+            form.appendChild(document.createElement('br'));
+            form.appendChild(nextBtn);
+            // Disable radio dan tombol cek
+            Array.from(form.querySelectorAll('input[type=radio]')).forEach(i => i.disabled = true);
+            form.querySelector('.quiz-btn').disabled = true;
         }
+
+        function nextSoal() {
+            current++;
+            if (current < quizData.length) {
+                loadQuiz();
+            } else {
+                showScore();
+            }
+        }
+
+        function showScore() {
+            document.getElementById('quiz-question').textContent = 'Quiz Selesai!';
+            document.getElementById('quiz-huruf').textContent = '';
+            document.getElementById('quizForm').innerHTML = '';
+            document.getElementById('feedback').textContent = '';
+            document.getElementById('quiz-score').textContent = `Skor kamu: ${score} dari ${quizData.length}`;
+        }
+
+        // Load soal pertama
+        loadQuiz();
     </script>
 </body>
 </html> 
