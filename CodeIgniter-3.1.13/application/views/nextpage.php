@@ -203,6 +203,10 @@
             document.getElementById('quizForm').innerHTML = '';
             document.getElementById('feedback').textContent = '';
             document.getElementById('quiz-score').textContent = `Skor kamu: ${score} dari ${quizData.length}`;
+            // Redirect ke halaman data pengguna setelah 2 detik
+            setTimeout(function() {
+                window.location.href = "/Tugas_Delvia/CodeIgniter-3.1.13/index.php/Users";
+            }, 2000);
         }
 
         // Load soal pertama
