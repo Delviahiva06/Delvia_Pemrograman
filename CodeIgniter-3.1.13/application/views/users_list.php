@@ -54,6 +54,7 @@
             <button class="btn">Tambah pengguna</button>
             <button class="btn">Edit pengguna</button>
             <button class="btn">Ubah password</button>
+            <a href="/Tugas_Delvia/CodeIgniter-3.1.13/index.php/Login/logout" class="btn" style="background: #f87171;">Logout</a>
         </div>
         <table>
             <thead>
